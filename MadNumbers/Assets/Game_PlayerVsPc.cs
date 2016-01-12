@@ -109,16 +109,21 @@ public class Game_PlayerVsPc : MonoBehaviour {
     }
     public int AIchoice(int _turn, int _line, int depth,int bestScoreComp=0,int bestScorePl = 0)
     {
-        //int bestScorePl;
-        //int bestScoreComp;
+        int ScorePl;
+        int ScoreComp;
         int bestChoice=0;
-        int temp;
+        int temp=0;
         int bestStep = -1;
         
         if (bestScorePl == 0 && bestScoreComp == 0)
         {
-            bestScorePl = PlayerPoints;
-            bestScoreComp = CompPoints;
+            ScorePl = PlayerPoints;
+            ScoreComp = CompPoints;
+        }
+        else
+        {
+            ScorePl = bestScorePl;
+            ScoreComp = bestScoreComp;
         }
         for (int i = 0; i < poleRazmer; i++)
         {
@@ -128,37 +133,58 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 {
                     
                     cell_Pl_vs_Pc checkNumber = cells[i,_line].GetComponent<cell_Pl_vs_Pc>();
-                    int next = 0;
-                    if (depth < maxDepth)
+                    int ai=-1;
+                    if (Mathf.Abs(checkNumber.Number) != 99)
                     {
-                        cell_Pl_vs_Pc checkNumber2 = cells[AIchoice(0, i, depth++), i].GetComponent<cell_Pl_vs_Pc>();
-                        next = checkNumber2.Number;
-                    }
-                    if (bestChoice == 0 || bestChoice < bestScoreComp - bestScorePl + checkNumber.Number - next && next!=-1)
-                    {
+                        temp = checkNumber.Number;
+                        checkNumber.Number = 98;
+                        int next = 0;
+                        
+                        if (depth < maxDepth)
+                        {
+                            ai=AIchoice(0, i, depth+1, ScoreComp + temp, ScorePl);
+                            if (ai != -1)
+                            {
+                                cell_Pl_vs_Pc checkNumber2 = cells[i, ai].GetComponent<cell_Pl_vs_Pc>();
+                                next = checkNumber2.Number;
+                            }
+                            else
+                            {
+                                bestStep = i;
+                                checkNumber.Number = Mathf.Abs(temp) - 1;
+                                return bestStep;
+                            }    
+                        }
+                        if (bestChoice == 0 || bestChoice < ScoreComp - ScorePl + temp - next)
+                        {
 
-                        bestChoice = bestScoreComp - bestScorePl + checkNumber.Number - next;
-                        bestStep = i;
+                            bestChoice = ScoreComp - ScorePl + temp - next;
+                            bestStep = i;
+                        }                        
+                        checkNumber.Number = Mathf.Abs(temp) - 1;
                     }
-                    if (next == -1)
-                    {
-                        bestStep = i;
-                        return bestStep;
-                    }
+                    else continue;
                 }
-                else continue;                                                                      
-                //if(depth<maxDepth)AIchoice(1,i,depth++)
+                else continue;                                                                                      
             }
             else
             {
                 if (cells[_line,i] != null)
                 {
                     cell_Pl_vs_Pc checkNumber = cells[_line, i].GetComponent<cell_Pl_vs_Pc>();
-                    if (bestChoice == 0 || bestChoice < bestScorePl-bestScoreComp + checkNumber.Number)
+                    if (Mathf.Abs(checkNumber.Number) != 99)
                     {
-                        bestChoice = bestScorePl - bestScoreComp + checkNumber.Number;
-                        bestStep = i;
+                        temp=checkNumber.Number;
+                        checkNumber.Number = 98;
+                        if (bestChoice == 0 || bestChoice < ScorePl - ScoreComp + temp)
+                        {
+                            bestChoice = ScorePl - ScoreComp + temp;
+                            bestStep = i;
+                        }
+                        checkNumber.Number = Mathf.Abs(temp)-1;
                     }
+                    
+                    else continue;
                 }
                 else continue;
             }

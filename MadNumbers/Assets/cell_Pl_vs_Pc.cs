@@ -58,5 +58,9 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
                 return -cellNumber-1;
             }
         }
+        set
+        {
+            cellNumber = value;
+        }
     }
 }
