@@ -13,6 +13,9 @@ public class Game_PlayerVsPc : MonoBehaviour {
     public Text pointsTextComp;
     private int _turn = 1;
     public int maxDepth;
+    public Text endText;
+    public Button restartButton;
+    public GameObject img;
     // Use this for initialization
     void Start()
     {
@@ -20,7 +23,9 @@ public class Game_PlayerVsPc : MonoBehaviour {
         Generate();
         pointsTextPlayer.text = string.Format("{0}", PlayerPoints);
         pointsTextComp.text = string.Format("{0}", CompPoints);
-        ChouseLine(Random.Range(0, poleRazmer), Random.Range(0, poleRazmer));
+        ChouseLine(Random.Range(0, poleRazmer), Random.Range(0, poleRazmer),true);
+        img.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,41 +63,49 @@ public class Game_PlayerVsPc : MonoBehaviour {
         }
 
     }
-    public void ChouseLine(int x, int y)
+    public void ChouseLine(int x, int y,bool start=false)
     {
         OffAllCollaider();
+        bool isEnd=true;
         if (_turn == 0)
         {
+            StartCoroutine(CompStep(x));
             for (int j = 0; j < poleRazmer; j++)
             {
-                if (cells[j, x] != null)
+                if (cells[j, x] != null && j != y || cells[j, x] != null && start)
                 {
+                    isEnd = false;
                     //PolygonCollider2D cellColl = cells[j, x].AddComponent<PolygonCollider2D>();
                     SpriteRenderer _render = cells[j, x].GetComponent<SpriteRenderer>();
                     _render.color = Color.blue;
                 }
+                
             }            
             _turn = 1;
-            StartCoroutine(CompStep(x));
+            if (isEnd) EndGame(0,x,y);
+            //StartCoroutine(CompStep(x));
             return;
         }
         else
         {
             for (int i = 0; i < poleRazmer; i++)
             {
-                if (cells[y, i] != null)
+                if (cells[y, i] != null && i != x || cells[y, i] != null && start)
                 {
+                    isEnd = false;
                     PolygonCollider2D cellColl = cells[y, i].AddComponent<PolygonCollider2D>();
                     SpriteRenderer _render = cells[y, i].GetComponent<SpriteRenderer>();
                     _render.color = Color.blue;
                 }
             }
             _turn = 0;
+            if (isEnd) EndGame(1,x,y);
             return;
         }
     }
     private void OffAllCollaider()
     {
+
         for (int i = 0; i < poleRazmer; i++)
         {
             for (int j = 0; j < poleRazmer; j++)
@@ -106,6 +119,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 }
             }
         }
+        
     }
     public int AIchoice(int _turn, int _line, int depth,int bestScoreComp=0,int bestScorePl = 0)
     {
@@ -172,13 +186,31 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 if (cells[_line,i] != null)
                 {
                     cell_Pl_vs_Pc checkNumber = cells[_line, i].GetComponent<cell_Pl_vs_Pc>();
+                    int ai = -1;
                     if (Mathf.Abs(checkNumber.Number) != 99)
                     {
                         temp=checkNumber.Number;
                         checkNumber.Number = 98;
-                        if (bestChoice == 0 || bestChoice < ScorePl - ScoreComp + temp)
+                        int next = 0;
+                        
+                        if (depth < maxDepth)
                         {
-                            bestChoice = ScorePl - ScoreComp + temp;
+                            ai = AIchoice(1, i, depth + 1, ScoreComp, ScorePl+temp);
+                            if (ai != -1)
+                            {
+                                cell_Pl_vs_Pc checkNumber2 = cells[ai, i].GetComponent<cell_Pl_vs_Pc>();
+                                next = checkNumber2.Number;
+                            }
+                            else
+                            {
+                                bestStep = i;
+                                checkNumber.Number = Mathf.Abs(temp) - 1;
+                                return bestStep;
+                            }
+                        }
+                        if (bestChoice == 0 || bestChoice < ScorePl - ScoreComp + temp + next)
+                        {
+                            bestChoice = ScorePl - ScoreComp + temp + next;
                             bestStep = i;
                         }
                         checkNumber.Number = Mathf.Abs(temp)-1;
@@ -206,5 +238,49 @@ public class Game_PlayerVsPc : MonoBehaviour {
         }
         cell_Pl_vs_Pc stepComp = compChoice.GetComponent<cell_Pl_vs_Pc>();
         stepComp.OnMouseDown();
+    }
+
+
+    private void EndGame(int _turn,int x, int y)
+    {
+        if (IsCells(x,y))
+        {
+            if (_turn == 0)
+            {
+                endText.text = "You Win";
+            }
+            else
+            {
+                endText.text = "You Loose";
+            }
+            img.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            if (PlayerPoints > CompPoints)
+            {
+                endText.text = "You Win";
+            }
+            else
+            {
+                endText.text = "You Loose";
+            }
+            img.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+        }
+    }
+
+    private bool IsCells(int x,int y)
+    {        
+        foreach (GameObject i in cells)
+        {
+            if (i != null && i != cells[y, x])
+            {                
+                return true;
+            }
+            else continue;
+        }
+        return false;
     }
 }
