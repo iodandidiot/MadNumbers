@@ -13,9 +13,10 @@ public class Game_PlayerVsPc : MonoBehaviour {
     public Text pointsTextComp;
     private int _turn = 1;
     public int maxDepth;
-    public Text endText;
-    public Button restartButton;
-    public GameObject img;
+    bool start;
+    //public Text endText;
+    //public Button restartButton;
+    //public GameObject img;
     // Use this for initialization
     void Start()
     {
@@ -23,15 +24,20 @@ public class Game_PlayerVsPc : MonoBehaviour {
         Generate();
         pointsTextPlayer.text = string.Format("{0}", PlayerPoints);
         pointsTextComp.text = string.Format("{0}", CompPoints);
-        ChouseLine(Random.Range(0, poleRazmer), Random.Range(0, poleRazmer),true);
-        img.gameObject.SetActive(false);
-        restartButton.gameObject.SetActive(false);
+        //ChouseLine(Random.Range(0, poleRazmer), Random.Range(0, poleRazmer),true);
+        //img.gameObject.SetActive(false);
+        //restartButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (!start)
+        {
+            ChouseLine(Random.Range(0, poleRazmer), Random.Range(0, poleRazmer), true);
+            start = true;
+        }
+        
     }
 
     private void Generate()
@@ -40,13 +46,14 @@ public class Game_PlayerVsPc : MonoBehaviour {
         {
             for (int j = 0; j < poleRazmer; j++)
             {
-                cells[i, j] = (GameObject)Instantiate(cell, new Vector2(-3.5f + j * 1.4f, 4 - i * 1.4f), Quaternion.identity);
+                cells[i, j] = (GameObject)Instantiate(cell, new Vector2(-5f + j * 1.89f, 0 - i * 1.89f), Quaternion.identity);
                 cell_Pl_vs_Pc cellPozition = cells[i, j].GetComponent<cell_Pl_vs_Pc>();
                 cellPozition.x = j;
                 cellPozition.y = i;
 
             }
         }
+        
     }
 
     public void ChangePoints(int number)
@@ -76,8 +83,11 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 {
                     isEnd = false;
                     //PolygonCollider2D cellColl = cells[j, x].AddComponent<PolygonCollider2D>();
-                    SpriteRenderer _render = cells[j, x].GetComponent<SpriteRenderer>();
-                    _render.color = Color.blue;
+                    //SpriteRenderer _render = cells[j, x].GetComponent<SpriteRenderer>();
+                    //_render.color = Color.blue;
+                    cell_Pl_vs_Pc cellChosen = cells[j, x].GetComponent<cell_Pl_vs_Pc>();
+
+                    cellChosen.Chousen();
                 }
                 
             }            
@@ -94,8 +104,11 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 {
                     isEnd = false;
                     PolygonCollider2D cellColl = cells[y, i].AddComponent<PolygonCollider2D>();
-                    SpriteRenderer _render = cells[y, i].GetComponent<SpriteRenderer>();
-                    _render.color = Color.blue;
+                    //SpriteRenderer _render = cells[y, i].GetComponent<SpriteRenderer>();
+                    //_render.color = Color.blue;
+                    cell_Pl_vs_Pc cellChosen = cells[y, i].GetComponent<cell_Pl_vs_Pc>();
+                    cellChosen.Chousen();
+
                 }
             }
             _turn = 0;
@@ -114,8 +127,8 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 {
                     Collider2D cellColl = cells[i, j].GetComponent<Collider2D>();
                     Destroy(cellColl);
-                    SpriteRenderer _render = cells[i, j].GetComponent<SpriteRenderer>();
-                    _render.color = Color.white;
+                    cell_Pl_vs_Pc cellChosen = cells[i, j].GetComponent<cell_Pl_vs_Pc>();
+                    cellChosen.UnChousen();
                 }
             }
         }
@@ -247,27 +260,31 @@ public class Game_PlayerVsPc : MonoBehaviour {
         {
             if (_turn == 0)
             {
-                endText.text = "You Win";
+                //endText.text = "You Win";
+                print("You Win");
             }
             else
             {
-                endText.text = "You Loose";
+                //endText.text = "You Loose";
+                print("You Loose");
             }
-            img.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(true);
+            //img.gameObject.SetActive(true);
+            //restartButton.gameObject.SetActive(true);
         }
         else
         {
             if (PlayerPoints > CompPoints)
             {
-                endText.text = "You Win";
+                //endText.text = "You Win";
+                print("You Win");
             }
             else
             {
-                endText.text = "You Loose";
+                //endText.text = "You Loose";
+                print("You Loose");
             }
-            img.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(true);
+            //img.gameObject.SetActive(true);
+            //restartButton.gameObject.SetActive(true);
         }
     }
 

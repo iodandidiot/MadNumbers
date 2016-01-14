@@ -5,12 +5,13 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
 
     public Sprite[] numbers;
     public Sprite[] colors;
+    public Sprite[] colorsDown;
     public GameObject Numbers;
     public int x;
     public int y;
     GameObject pole;
     GameObject NumbersThis;
-    GameObject ColorThis;
+    //public GameObject ColorThis;
     int cellNumber;
     int color;
 
@@ -24,8 +25,8 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
         chouseSprite.sprite = numbers[cellNumber];
         chouseSprite.sortingLayerName = "cell";
         chouseSprite.sortingOrder = 2;
-        ColorThis = (GameObject)Instantiate(Numbers, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-        SpriteRenderer chouseColor = ColorThis.AddComponent<SpriteRenderer>();
+        //ColorThis = (GameObject)Instantiate(Numbers, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
         color = Random.Range(0, 2);
         chouseColor.sprite = colors[color];
         chouseColor.sortingLayerName = "cell";
@@ -41,7 +42,7 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
         Game_PlayerVsPc gPole = pole.GetComponent<Game_PlayerVsPc>();
         gPole.ChangePoints(this.Number);
         gPole.ChouseLine(x, y);
-        Destroy(ColorThis);
+        //Destroy(ColorThis);
         Destroy(NumbersThis);
         Destroy(gameObject);
     }
@@ -61,6 +62,36 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
         set
         {
             cellNumber = value;
+        }
+    }
+    public void Chousen()
+    {
+        if (color == 0)
+        {
+            //ColorThis = (GameObject)Instantiate(Numbers, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
+            chouseColor.sprite = colorsDown[0];
+        }
+        else
+        {
+            //ColorThis = (GameObject)Instantiate(Numbers, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
+            chouseColor.sprite = colorsDown[1];
+        }   
+    }
+    public void UnChousen()
+    {
+        if (color == 0)
+        {
+            //ColorThis = (GameObject)Instantiate(Numbers, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
+            chouseColor.sprite = colors[0];
+        }
+        else
+        {
+            //ColorThis = (GameObject)Instantiate(Numbers, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
+            chouseColor.sprite = colors[1];
         }
     }
 }
