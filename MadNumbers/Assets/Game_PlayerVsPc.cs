@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game_PlayerVsPc : MonoBehaviour {
 
@@ -14,19 +15,39 @@ public class Game_PlayerVsPc : MonoBehaviour {
     private int _turn = 1;
     public int maxDepth;
     bool start;
-    //public Text endText;
-    //public Button restartButton;
-    //public GameObject img;
+    public Image pointsTextPlayerBG;
+    public Image pointsTextCompBG;
+    public Sprite[] pointsBG;
+    public float poleKoef;
+    public float poleKoefx;
+    public float poleKoefy;
     // Use this for initialization
     void Start()
     {
+        //switch (PlayerPrefs.GetString("Level"))
+        //{
+        //    case "game6X6":
+        //        poleKoef2 = 1.89f;
+        //        poleKoef1 = -5f;
+        //        break;
+        //    case "game8X8":
+        //        poleKoef2 = 1.89f;
+        //        poleKoef1 = -6f;
+        //        break;
+        //    case "game12X12":
+        //        ;
+        //        break;
+        //    case "game16X16":
+        //        ;
+        //        break;
+        //    default:
+        //        ;
+        //        break;
+        //}
         cells = new GameObject[poleRazmer, poleRazmer];
         Generate();
         pointsTextPlayer.text = string.Format("{0}", PlayerPoints);
-        pointsTextComp.text = string.Format("{0}", CompPoints);
-        //ChouseLine(Random.Range(0, poleRazmer), Random.Range(0, poleRazmer),true);
-        //img.gameObject.SetActive(false);
-        //restartButton.gameObject.SetActive(false);
+        pointsTextComp.text = string.Format("{0}", CompPoints);        
     }
 
     // Update is called once per frame
@@ -46,7 +67,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
         {
             for (int j = 0; j < poleRazmer; j++)
             {
-                cells[i, j] = (GameObject)Instantiate(cell, new Vector2(-5f + j * 1.89f, 0 - i * 1.89f), Quaternion.identity);
+                cells[i, j] = (GameObject)Instantiate(cell, new Vector2(poleKoefx + j * poleKoef, poleKoefy - i * poleKoef), Quaternion.identity);
                 cell_Pl_vs_Pc cellPozition = cells[i, j].GetComponent<cell_Pl_vs_Pc>();
                 cellPozition.x = j;
                 cellPozition.y = i;
@@ -62,11 +83,29 @@ public class Game_PlayerVsPc : MonoBehaviour {
         {
             PlayerPoints += number;
             pointsTextPlayer.text = string.Format("{0}", PlayerPoints);
+            if (number > 0)
+            {
+                pointsTextPlayerBG.sprite = pointsBG[1];
+            }
+            else
+            {
+                pointsTextPlayerBG.sprite = pointsBG[2];
+            }
+            StartCoroutine(ChangeScoreBg(0));
         }
         else
         {
             CompPoints += number;
             pointsTextComp.text = string.Format("{0}", CompPoints);
+            if (number > 0)
+            {
+                pointsTextCompBG.sprite = pointsBG[4];
+            }
+            else
+            {
+                pointsTextCompBG.sprite = pointsBG[5];
+            }
+            StartCoroutine(ChangeScoreBg(1));
         }
 
     }
@@ -260,13 +299,15 @@ public class Game_PlayerVsPc : MonoBehaviour {
         {
             if (_turn == 0)
             {
-                //endText.text = "You Win";
-                print("You Win");
+                PlayerPrefs.SetString("Finish", "Win");
+                PlayerPrefs.SetInt("FinishScore", PlayerPoints);
+                SceneManager.LoadScene("final");
             }
             else
             {
-                //endText.text = "You Loose";
-                print("You Loose");
+                PlayerPrefs.SetString("Finish", "Lost");
+                PlayerPrefs.SetInt("FinishScore", PlayerPoints);
+                SceneManager.LoadScene("final");
             }
             //img.gameObject.SetActive(true);
             //restartButton.gameObject.SetActive(true);
@@ -275,13 +316,15 @@ public class Game_PlayerVsPc : MonoBehaviour {
         {
             if (PlayerPoints > CompPoints)
             {
-                //endText.text = "You Win";
-                print("You Win");
+                PlayerPrefs.SetString("Finish", "Win");
+                PlayerPrefs.SetInt("FinishScore", PlayerPoints);
+                SceneManager.LoadScene("final");
             }
             else
             {
-                //endText.text = "You Loose";
-                print("You Loose");
+                PlayerPrefs.SetString("Finish", "Lost");
+                PlayerPrefs.SetInt("FinishScore", PlayerPoints);
+                SceneManager.LoadScene("final");
             }
             //img.gameObject.SetActive(true);
             //restartButton.gameObject.SetActive(true);
@@ -299,5 +342,19 @@ public class Game_PlayerVsPc : MonoBehaviour {
             else continue;
         }
         return false;
+    }
+
+    IEnumerator  ChangeScoreBg(int turn)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (turn == 1)
+        {
+            pointsTextCompBG.sprite = pointsBG[3];
+        }
+        else
+        {
+            pointsTextPlayerBG.sprite = pointsBG[0];
+        }
+        
     }
 }

@@ -69,10 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CellGenerate.cs" />
+    <Compile Include="Assets\FinishScreen.cs" />
     <Compile Include="Assets\Game_PlayerVsPc.cs" />
     <Compile Include="Assets\Generate_pole.cs" />
+    <Compile Include="Assets\GoMainMenu.cs" />
     <Compile Include="Assets\Restart.cs" />
     <Compile Include="Assets\cell_Pl_vs_Pc.cs" />
+    <Compile Include="Assets\level_12X12_button.cs" />
+    <Compile Include="Assets\level_6X6_button.cs" />
+    <Compile Include="Assets\level_8X8_button.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
