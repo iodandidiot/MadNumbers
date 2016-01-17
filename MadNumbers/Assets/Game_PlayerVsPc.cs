@@ -23,27 +23,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
     public float poleKoefy;
     // Use this for initialization
     void Start()
-    {
-        //switch (PlayerPrefs.GetString("Level"))
-        //{
-        //    case "game6X6":
-        //        poleKoef2 = 1.89f;
-        //        poleKoef1 = -5f;
-        //        break;
-        //    case "game8X8":
-        //        poleKoef2 = 1.89f;
-        //        poleKoef1 = -6f;
-        //        break;
-        //    case "game12X12":
-        //        ;
-        //        break;
-        //    case "game16X16":
-        //        ;
-        //        break;
-        //    default:
-        //        ;
-        //        break;
-        //}
+    {        
         cells = new GameObject[poleRazmer, poleRazmer];
         Generate();
         pointsTextPlayer.text = string.Format("{0}", PlayerPoints);
@@ -57,8 +37,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
         {
             ChouseLine(Random.Range(0, poleRazmer), Random.Range(0, poleRazmer), true);
             start = true;
-        }
-        
+        }        
     }
 
     private void Generate()
@@ -221,7 +200,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
                                 return bestStep;
                             }    
                         }
-                        if (bestChoice == 0 || bestChoice < ScoreComp - ScorePl + temp - next)
+                        if (bestChoice == 0 || bestChoice < ScoreComp - ScorePl + temp - next || bestChoice == ScoreComp - ScorePl + temp - next && Random.Range(0,2)==1)
                         {
 
                             bestChoice = ScoreComp - ScorePl + temp - next;
@@ -260,7 +239,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
                                 return bestStep;
                             }
                         }
-                        if (bestChoice == 0 || bestChoice < ScorePl - ScoreComp + temp + next)
+                        if (bestChoice == 0 || bestChoice < ScorePl - ScoreComp + temp + next || bestChoice == ScoreComp - ScorePl + temp - next && Random.Range(0, 2) == 1)
                         {
                             bestChoice = ScorePl - ScoreComp + temp + next;
                             bestStep = i;
@@ -273,6 +252,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 else continue;
             }
         }
+        //print(bestStep);
         return bestStep;
         
     }
@@ -357,4 +337,77 @@ public class Game_PlayerVsPc : MonoBehaviour {
         }
         
     }
+
+    public void setBack(int x,int y, int number, int color)
+    {
+        if (_turn == 0)
+        {
+            PlayerPrefs.SetInt("CompStepX", x);
+            PlayerPrefs.SetInt("CompStepY", y);
+            PlayerPrefs.SetInt("CompStepNumber", number);
+            PlayerPrefs.SetInt("CompStepColor", color);
+        }
+        if (_turn == 1)
+        {
+            PlayerPrefs.SetInt("PlayerStepX", x);
+            PlayerPrefs.SetInt("PlayerStepY", y);
+            PlayerPrefs.SetInt("PlayerStepNumber", number);
+            PlayerPrefs.SetInt("PlayerStepColor", color);
+        }
+    }
+
+    public void getBack()
+    {
+        
+        print(cells.Length);
+        print(string.Format("{0} , {1}", PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepx")));
+        cells[PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepX")] = (GameObject)Instantiate(cell, new Vector2(poleKoefx + PlayerPrefs.GetInt("PlayerStepX") * poleKoef, poleKoefy - PlayerPrefs.GetInt("PlayerStepY") * poleKoef), Quaternion.identity);
+        cell_Pl_vs_Pc cellChosen = cells[PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepX")].GetComponent<cell_Pl_vs_Pc>();
+        cellChosen.firstNumber = PlayerPrefs.GetInt("PlayerStepNumber");
+        cellChosen.firstColor = PlayerPrefs.GetInt("PlayerStepColor");
+        if (PlayerPrefs.GetInt("PlayerStepColor") == 0)
+        {
+            PlayerPoints -= PlayerPrefs.GetInt("PlayerStepNumber");
+            PlayerPoints -= 1;
+        }
+        else
+        {
+            PlayerPoints += PlayerPrefs.GetInt("PlayerStepNumber");
+            PlayerPoints += 1;
+        }
+        cell_Pl_vs_Pc cellPozition = cells[PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepX")].GetComponent<cell_Pl_vs_Pc>();
+        cellPozition.x = PlayerPrefs.GetInt("PlayerStepX");
+        cellPozition.y = PlayerPrefs.GetInt("PlayerStepY");
+        cellChosen.Chousen();
+        cells[PlayerPrefs.GetInt("CompStepY"), PlayerPrefs.GetInt("CompStepX")] = (GameObject)Instantiate(cell, new Vector2(poleKoefx + PlayerPrefs.GetInt("CompStepX") * poleKoef, poleKoefy - PlayerPrefs.GetInt("CompStepY") * poleKoef), Quaternion.identity);
+        cell_Pl_vs_Pc cellChosen1 = cells[PlayerPrefs.GetInt("CompStepY"), PlayerPrefs.GetInt("CompStepX")].GetComponent<cell_Pl_vs_Pc>();
+        cellChosen1.firstNumber = PlayerPrefs.GetInt("CompStepNumber");
+        cellChosen1.firstColor = PlayerPrefs.GetInt("CompStepColor");
+        if (PlayerPrefs.GetInt("CompStepColor") == 0)
+        {
+            CompPoints -= PlayerPrefs.GetInt("CompStepNumber");
+            CompPoints -= 1;
+        }
+        else
+        {
+            CompPoints += PlayerPrefs.GetInt("CompStepNumber");
+            CompPoints += 1;
+        }
+        pointsTextComp.text = string.Format("{0}", CompPoints);   
+        pointsTextPlayer.text = string.Format("{0}", PlayerPoints);
+        cell_Pl_vs_Pc cellPozition1 = cells[PlayerPrefs.GetInt("CompStepY"), PlayerPrefs.GetInt("CompStepX")].GetComponent<cell_Pl_vs_Pc>();
+        cellPozition1.x = PlayerPrefs.GetInt("CompStepX");
+        cellPozition1.y = PlayerPrefs.GetInt("CompStepY");
+        _turn = 1;
+        ChouseLine(PlayerPrefs.GetInt("PlayerStepX"), PlayerPrefs.GetInt("PlayerStepY"));
+        StartCoroutine(getBackCoro(PlayerPrefs.GetInt("PlayerStepX"), PlayerPrefs.GetInt("PlayerStepY")));
+        print(cells.Length);
+    }
+    IEnumerator getBackCoro(int x,int y)
+    {
+        yield return new WaitForEndOfFrame();
+        PolygonCollider2D cellColl = cells[y, x].AddComponent<PolygonCollider2D>();
+        cell_Pl_vs_Pc cellChosen = cells[y, x].GetComponent<cell_Pl_vs_Pc>();
+        cellChosen.Chousen();   
+    }    
 }
