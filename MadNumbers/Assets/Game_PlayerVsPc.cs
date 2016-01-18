@@ -21,6 +21,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
     public float poleKoef;
     public float poleKoefx;
     public float poleKoefy;
+    public int turns;
     // Use this for initialization
     void Start()
     {        
@@ -58,6 +59,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
 
     public void ChangePoints(int number)
     {
+        turns += 1;
         if (_turn == 0)
         {
             PlayerPoints += number;
@@ -188,17 +190,22 @@ public class Game_PlayerVsPc : MonoBehaviour {
                         if (depth < maxDepth)
                         {
                             ai=AIchoice(0, i, depth+1, ScoreComp + temp, ScorePl);
-                            if (ai != -1)
-                            {
-                                cell_Pl_vs_Pc checkNumber2 = cells[i, ai].GetComponent<cell_Pl_vs_Pc>();
-                                next = checkNumber2.Number;
-                            }
-                            else
+                            if (ai == -1 && ScoreComp > ScorePl)
                             {
                                 bestStep = i;
                                 checkNumber.Number = Mathf.Abs(temp) - 1;
                                 return bestStep;
-                            }    
+                            }
+                            else if (ai == -1 && ScoreComp < ScorePl)
+                            {
+                                continue;
+                                                            
+                            }
+                            else
+                            {
+                                cell_Pl_vs_Pc checkNumber2 = cells[i, ai].GetComponent<cell_Pl_vs_Pc>();
+                                next = checkNumber2.Number;    
+                            }
                         }
                         if (bestChoice == 0 || bestChoice < ScoreComp - ScorePl + temp - next || bestChoice == ScoreComp - ScorePl + temp - next && Random.Range(0,2)==1)
                         {
@@ -227,16 +234,21 @@ public class Game_PlayerVsPc : MonoBehaviour {
                         if (depth < maxDepth)
                         {
                             ai = AIchoice(1, i, depth + 1, ScoreComp, ScorePl+temp);
-                            if (ai != -1)
-                            {
-                                cell_Pl_vs_Pc checkNumber2 = cells[ai, i].GetComponent<cell_Pl_vs_Pc>();
-                                next = checkNumber2.Number;
-                            }
-                            else
+                            if (ai == -1 && ScoreComp>ScorePl)
                             {
                                 bestStep = i;
                                 checkNumber.Number = Mathf.Abs(temp) - 1;
                                 return bestStep;
+                                
+                            }
+                            else if (ai == -1 && ScoreComp < ScorePl)
+                            {
+                                continue;                                
+                            }
+                            else
+                            {
+                                cell_Pl_vs_Pc checkNumber2 = cells[ai, i].GetComponent<cell_Pl_vs_Pc>();
+                                next = checkNumber2.Number;
                             }
                         }
                         if (bestChoice == 0 || bestChoice < ScorePl - ScoreComp + temp + next || bestChoice == ScoreComp - ScorePl + temp - next && Random.Range(0, 2) == 1)
@@ -277,17 +289,19 @@ public class Game_PlayerVsPc : MonoBehaviour {
     {
         if (IsCells(x,y))
         {
-            if (_turn == 0)
+            if (PlayerPoints > CompPoints)
             {
                 PlayerPrefs.SetString("Finish", "Win");
                 PlayerPrefs.SetInt("FinishScore", PlayerPoints);
-                SceneManager.LoadScene("final");
+                StartCoroutine("goFinal");
+                //SceneManager.LoadScene("final");
             }
             else
             {
                 PlayerPrefs.SetString("Finish", "Lost");
                 PlayerPrefs.SetInt("FinishScore", PlayerPoints);
-                SceneManager.LoadScene("final");
+                StartCoroutine("goFinal");
+                //SceneManager.LoadScene("final");
             }
             //img.gameObject.SetActive(true);
             //restartButton.gameObject.SetActive(true);
@@ -298,13 +312,15 @@ public class Game_PlayerVsPc : MonoBehaviour {
             {
                 PlayerPrefs.SetString("Finish", "Win");
                 PlayerPrefs.SetInt("FinishScore", PlayerPoints);
-                SceneManager.LoadScene("final");
+                StartCoroutine("goFinal");
+                //SceneManager.LoadScene("final");
             }
             else
             {
                 PlayerPrefs.SetString("Finish", "Lost");
                 PlayerPrefs.SetInt("FinishScore", PlayerPoints);
-                SceneManager.LoadScene("final");
+                StartCoroutine("goFinal");
+                //SceneManager.LoadScene("final");
             }
             //img.gameObject.SetActive(true);
             //restartButton.gameObject.SetActive(true);
@@ -358,8 +374,9 @@ public class Game_PlayerVsPc : MonoBehaviour {
 
     public void getBack()
     {
-        if (_turn == 0)
+        if (_turn == 0 && turns > 0)
         {
+            turns =0;
             print(cells.Length);
             print(string.Format("{0} , {1}", PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepx")));
             cells[PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepX")] = (GameObject)Instantiate(cell, new Vector2(poleKoefx + PlayerPrefs.GetInt("PlayerStepX") * poleKoef, poleKoefy - PlayerPrefs.GetInt("PlayerStepY") * poleKoef), Quaternion.identity);
@@ -412,5 +429,10 @@ public class Game_PlayerVsPc : MonoBehaviour {
         PolygonCollider2D cellColl = cells[y, x].AddComponent<PolygonCollider2D>();
         cell_Pl_vs_Pc cellChosen = cells[y, x].GetComponent<cell_Pl_vs_Pc>();
         cellChosen.Chousen();   
-    }    
+    }
+    IEnumerator goFinal()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("final");
+    }
 }

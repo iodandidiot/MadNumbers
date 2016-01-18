@@ -1,0 +1,356 @@
+fileFormatVersion: 2
+guid: 5551f3d5bab0b884a96f12e1b24fdea7
+timeCreated: 1453145325
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: new_buttom_0
+    21300002: new_buttom_1
+    21300004: new_buttom_2
+    21300006: new_buttom_3
+    21300008: new_buttom_4
+    21300010: new_buttom_5
+    21300012: new_buttom_6
+    21300014: new_buttom_7
+    21300016: new_buttom_8
+    21300018: new_buttom_9
+    21300020: new_buttom_10
+    21300022: new_buttom_11
+    21300024: new_buttom_12
+    21300026: new_buttom_13
+    21300028: new_buttom_14
+    21300030: new_buttom_15
+    21300032: new_buttom_16
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: new_buttom_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1372
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_1
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1397
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_2
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 1357
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_3
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 1371
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_4
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 915
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_5
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 947
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_6
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 896
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_7
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 938
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_8
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 466
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_9
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 504
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_10
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 441
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_11
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 477
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_12
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 156
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 21}
+        - {x: -21, y: 20}
+        - {x: -21, y: 12}
+        - {x: 12, y: -21}
+        - {x: 19, y: -21}
+        - {x: 21, y: -18}
+        - {x: 21, y: -8}
+        - {x: -8, y: 21}
+    - name: new_buttom_13
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 190
+        width: 9
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: new_buttom_14
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 156
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 21}
+        - {x: -21, y: -12}
+        - {x: -21, y: -17}
+        - {x: -17, y: -21}
+        - {x: -12, y: -21}
+        - {x: 21, y: 12}
+        - {x: 21, y: 18}
+        - {x: 18, y: 21}
+    - name: new_buttom_15
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 1
+        width: 229
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48.5, y: 91.5}
+        - {x: -114.5, y: 25.5}
+        - {x: -114.5, y: 19.5}
+        - {x: -3.5, y: -91.5}
+        - {x: 3.5, y: -91.5}
+        - {x: 114.5, y: 10.5}
+        - {x: 114.5, y: 25.5}
+        - {x: 57.5, y: 91.5}
+      - - {x: -88.5, y: 61.5}
+        - {x: -83.5, y: 61.5}
+        - {x: -76.5, y: 66.5}
+        - {x: -76.5, y: 70.5}
+        - {x: -96.5, y: 91.5}
+        - {x: -114.5, y: 91.5}
+        - {x: -114.5, y: 90.5}
+      - - {x: 99.5, y: 91.5}
+        - {x: 78.5, y: 70.5}
+        - {x: 78.5, y: 69.5}
+        - {x: 86.5, y: 61.5}
+        - {x: 87.5, y: 61.5}
+        - {x: 114.5, y: 88.5}
+        - {x: 114.5, y: 91.5}
+    - name: new_buttom_16
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 24
+        width: 180
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39, y: 72}
+        - {x: -90, y: 21}
+        - {x: -90, y: 14}
+        - {x: -9, y: -72}
+        - {x: 4, y: -72}
+        - {x: 18, y: -65}
+        - {x: 90, y: 8}
+        - {x: 90, y: 20}
+        - {x: 43, y: 72}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
