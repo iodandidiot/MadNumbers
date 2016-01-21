@@ -11,14 +11,19 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
     public int y;
     GameObject pole;
     GameObject NumbersThis;
+    GameObject CrEmpty;
     //public GameObject ColorThis;
     int cellNumber;
     int color;
     bool isColor=false;
-
+    public CompAnim compAnim;
+    float numberPosition;
+    public GameObject empty;
+    SpriteRenderer emptySprite;
     // Use this for initialization
     void Start()
     {
+        compAnim = GameObject.Find("compAnim").GetComponent<CompAnim>();
         pole = GameObject.FindWithTag("Pole");
         if (NumbersThis == null)
         {
@@ -26,8 +31,9 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
             NumbersThis = (GameObject)Instantiate(Numbers, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             SpriteRenderer chouseSprite = NumbersThis.AddComponent<SpriteRenderer>();
             chouseSprite.sprite = numbers[cellNumber];
+            numberPosition = NumbersThis.gameObject.transform.position.y;
             chouseSprite.sortingLayerName = "cell";
-            chouseSprite.sortingOrder = 2;
+            chouseSprite.sortingOrder = 3;
         }
         
         //ColorThis = (GameObject)Instantiate(Numbers, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
@@ -47,14 +53,20 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
 
     }
     public void OnMouseDown()
-    {        
-        Game_PlayerVsPc gPole = pole.GetComponent<Game_PlayerVsPc>();
-        gPole.ChangePoints(this.Number);
-        gPole.ChouseLine(x, y);
-        gPole.setBack(x, y, cellNumber, color);
-        //Destroy(ColorThis);
-        Destroy(NumbersThis);
-        Destroy(gameObject);
+    {
+        if (color == 0)
+        {
+            SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
+            chouseColor.sprite = colorsDown[2];
+
+        }
+        else
+        {
+            SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
+            chouseColor.sprite = colorsDown[3];
+
+        }   
+        StartCoroutine("onDestroy");
     }
     public int Number
     {
@@ -80,11 +92,17 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
         {            
             SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
             chouseColor.sprite = colorsDown[0];
+            chouseColor.sortingLayerName = "cell";
+            chouseColor.sortingOrder = 2;
+            NumbersThis.gameObject.transform.position=new Vector2 (NumbersThis.gameObject.transform.position.x,NumbersThis.gameObject.transform.position.y +0.1f);
         }
         else
         {            
             SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
             chouseColor.sprite = colorsDown[1];
+            chouseColor.sortingLayerName = "cell";
+            chouseColor.sortingOrder = 2;
+            NumbersThis.gameObject.transform.position = new Vector2(NumbersThis.gameObject.transform.position.x, NumbersThis.gameObject.transform.position.y + 0.1f);
         }   
     }
     public void UnChousen()
@@ -93,11 +111,19 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
         {            
             SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
             chouseColor.sprite = colors[0];
+            chouseColor.sortingLayerName = "cell";
+            chouseColor.sortingOrder = 1;
+            NumbersThis.gameObject.transform.position = new Vector2(NumbersThis.gameObject.transform.position.x, numberPosition);
+            
         }
         else
         {            
             SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
             chouseColor.sprite = colors[1];
+            chouseColor.sortingLayerName = "cell";
+            chouseColor.sortingOrder = 1;
+            NumbersThis.gameObject.transform.position = new Vector2(NumbersThis.gameObject.transform.position.x, numberPosition);
+            
         }
     }
     public int firstNumber
@@ -109,7 +135,8 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
             SpriteRenderer chouseSprite = NumbersThis.AddComponent<SpriteRenderer>();
             chouseSprite.sprite = numbers[cellNumber];
             chouseSprite.sortingLayerName = "cell";
-            chouseSprite.sortingOrder = 2;
+            chouseSprite.sortingOrder = 3;
+            numberPosition = NumbersThis.gameObject.transform.position.y;
         }
     }
     public int firstColor
@@ -124,5 +151,33 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
             isColor = true;
         }
     }
+    IEnumerator onDestroy()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (color == 0)
+        {
+            SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
+            chouseColor.sprite = colorsDown[0];
 
+        }
+        else
+        {
+            SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
+            chouseColor.sprite = colorsDown[1];
+
+        }  
+        yield return new WaitForSeconds(0.1f);
+        Game_PlayerVsPc gPole = pole.GetComponent<Game_PlayerVsPc>();
+        gPole.ChangePoints(this.Number);
+        gPole.ChouseLine(x, y);
+        gPole.setBack(x, y, cellNumber, color);
+        compAnim.setWhitFlag();
+        //Destroy(ColorThis);
+        CrEmpty = (GameObject)Instantiate(empty, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        //emptySprite = CrEmpty.AddComponent<SpriteRenderer>();
+        ////emptySprite.sortingLayerName = "cell";
+        ////emptySprite.sortingOrder = 0;
+        Destroy(NumbersThis);
+        Destroy(gameObject);
+    }
 }

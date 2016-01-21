@@ -154,15 +154,15 @@ public class Game_PlayerVsPc : MonoBehaviour {
         }
         
     }
-    public int AIchoice(int _turn, int _line, int depth,int bestScoreComp=0,int bestScorePl = 0)
+    public int AIchoice(int _turn, int _line, int depth,int bestScoreComp=0,int bestScorePl = 0)//получаем ход(0-игрок,1-компьютер),вложенность, очки компьютера, очки игрока c предыдушей вложенности
     {
-        int ScorePl;
-        int ScoreComp;
-        int bestChoice=0;
+        int ScorePl;//очки игрока
+        int ScoreComp;//очки компьютера
+        int bestChoice=0;//лучший выбор очки
         int temp=0;
-        int bestStep = -1;
-        
-        if (bestScorePl == 0 && bestScoreComp == 0)
+        int bestStep = -1;//лучший выбор ячейка
+
+        if (bestScorePl == 0 && bestScoreComp == 0)//если первый уровень вложенности, то взять текущщие очки
         {
             ScorePl = PlayerPoints;
             ScoreComp = CompPoints;
@@ -190,17 +190,21 @@ public class Game_PlayerVsPc : MonoBehaviour {
                         if (depth < maxDepth)
                         {
                             ai=AIchoice(0, i, depth+1, ScoreComp + temp, ScorePl);
-                            if (ai == -1 && ScoreComp > ScorePl)
+                            if (ai == -1)
                             {
-                                bestStep = i;
-                                checkNumber.Number = Mathf.Abs(temp) - 1;
-                                return bestStep;
-                            }
-                            else if (ai == -1 && ScoreComp < ScorePl)
-                            {
-                                continue;
-                                                            
-                            }
+                                if (ScoreComp > ScorePl)
+                                {
+                                    //bestStep = i;
+                                    //checkNumber.Number = Mathf.Abs(temp) - 1;
+                                    //return bestStep;
+                                    next = -9999;
+                                }
+                                else
+                                {
+                                    next = 9999;
+                                    //continue;
+                                }
+                            }                            
                             else
                             {
                                 cell_Pl_vs_Pc checkNumber2 = cells[i, ai].GetComponent<cell_Pl_vs_Pc>();
@@ -234,17 +238,22 @@ public class Game_PlayerVsPc : MonoBehaviour {
                         if (depth < maxDepth)
                         {
                             ai = AIchoice(1, i, depth + 1, ScoreComp, ScorePl+temp);
-                            if (ai == -1 && ScoreComp>ScorePl)
+                            if (ai == -1)
                             {
-                                bestStep = i;
-                                checkNumber.Number = Mathf.Abs(temp) - 1;
-                                return bestStep;
+                                if (ScoreComp > ScorePl)
+                                {
+                                    //bestStep = i;
+                                    //checkNumber.Number = Mathf.Abs(temp) - 1;
+                                    //return bestStep;
+                                    next = 9999;
+                                }
+                                else
+                                {
+                                    //continue;
+                                    next = -9999;
+                                }
                                 
-                            }
-                            else if (ai == -1 && ScoreComp < ScorePl)
-                            {
-                                continue;                                
-                            }
+                            }                            
                             else
                             {
                                 cell_Pl_vs_Pc checkNumber2 = cells[ai, i].GetComponent<cell_Pl_vs_Pc>();
@@ -253,7 +262,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
                         }
                         if (bestChoice == 0 || bestChoice < ScorePl - ScoreComp + temp + next || bestChoice == ScoreComp - ScorePl + temp - next && Random.Range(0, 2) == 1)
                         {
-                            bestChoice = ScorePl - ScoreComp + temp + next;
+                            bestChoice = ScorePl - ScoreComp + temp - next;
                             bestStep = i;
                         }
                         checkNumber.Number = Mathf.Abs(temp)-1;
@@ -264,22 +273,24 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 else continue;
             }
         }
-        //print(bestStep);
+
         return bestStep;
         
     }
     IEnumerator CompStep(int x)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        print(AIchoice(_turn, x, 1));
         GameObject compChoice = cells[AIchoice(_turn, x, 1), x];
-        for(int i=0;i<10;i++)
-        {
-            SpriteRenderer _render=compChoice.GetComponent<SpriteRenderer>();
-            Color color =new Color(1, 0.92f, 0.016f, 1);
-            color.a -= i/10;
-            _render.color = color;            
-            yield return new WaitForSeconds(0.1f);
-        }
+        
+        //for(int i=0;i<10;i++)
+        //{
+        //    SpriteRenderer _render=compChoice.GetComponent<SpriteRenderer>();
+        //    Color color =new Color(1, 0.92f, 0.016f, 1);
+        //    color.a -= i/10;
+        //    _render.color = color;            
+        //    yield return new WaitForSeconds(0.1f);
+        //}
         cell_Pl_vs_Pc stepComp = compChoice.GetComponent<cell_Pl_vs_Pc>();
         stepComp.OnMouseDown();
     }
@@ -378,7 +389,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
         {
             turns =0;
             print(cells.Length);
-            print(string.Format("{0} , {1}", PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepx")));
+            print(string.Format("{0} , {1}", PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepX")));
             cells[PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepX")] = (GameObject)Instantiate(cell, new Vector2(poleKoefx + PlayerPrefs.GetInt("PlayerStepX") * poleKoef, poleKoefy - PlayerPrefs.GetInt("PlayerStepY") * poleKoef), Quaternion.identity);
             cell_Pl_vs_Pc cellChosen = cells[PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepX")].GetComponent<cell_Pl_vs_Pc>();
             cellChosen.firstNumber = PlayerPrefs.GetInt("PlayerStepNumber");
