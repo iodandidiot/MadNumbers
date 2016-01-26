@@ -1,9 +1,16 @@
 fileFormatVersion: 2
 guid: a4c77cf4ab73ff64ca6c174fceb3e747
-timeCreated: 1453145279
+timeCreated: 1453834074
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: new_buttom_2_0
+    21300002: new_buttom_2_1
+    21300004: new_buttom_2_2
+    21300006: new_buttom_2_3
+    21300008: new_buttom_2_4
+    21300010: new_buttom_2_5
+    21300012: new_buttom_2_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +45,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +56,112 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: new_buttom_2_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1488
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_2_1
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 1513
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_2_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 973
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_2_3
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 998
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_2_4
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 508
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
+    - name: new_buttom_2_5
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 533
+        width: 271
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 135.5}
+        - {x: -135.5, y: -135.5}
+        - {x: 135.5, y: -135.5}
+        - {x: 135.5, y: 135.5}
+    - name: new_buttom_2_6
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 321
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -160.5, y: 160.5}
+        - {x: -160.5, y: -160.5}
+        - {x: 160.5, y: -160.5}
+        - {x: 160.5, y: 160.5}
     outline: []
   spritePackingTag: 
   userData: 

@@ -1,9 +1,15 @@
 fileFormatVersion: 2
 guid: ba547537c3d6f4943aea044dac1afb9d
-timeCreated: 1453145280
+timeCreated: 1453837819
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: prodaja_vozvratov_0
+    21300002: prodaja_vozvratov_1
+    21300004: prodaja_vozvratov_2
+    21300006: prodaja_vozvratov_3
+    21300008: prodaja_vozvratov_4
+    21300010: prodaja_vozvratov_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -49,7 +55,135 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: prodaja_vozvratov_0
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1673
+        width: 290
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 75, y: 73}
+        - {x: -65, y: 73}
+        - {x: -66, y: 72}
+        - {x: -72, y: 67}
+        - {x: -76, y: 59}
+        - {x: -75, y: 28}
+        - {x: -66, y: 17}
+        - {x: -110, y: 5}
+        - {x: -145, y: -39}
+        - {x: -145, y: -72}
+        - {x: -142, y: -73}
+        - {x: 138, y: -73}
+        - {x: 145, y: -68}
+        - {x: 145, y: -40}
+    - name: prodaja_vozvratov_1
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 1565
+        width: 218
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -109, y: 50}
+        - {x: -109, y: -50}
+        - {x: 109, y: -50}
+        - {x: 109, y: 50}
+      - - {x: -15, y: 28}
+        - {x: 87, y: 28}
+        - {x: 87, y: -28}
+        - {x: -15, y: -28}
+      - - {x: -65, y: 16}
+        - {x: -77, y: 16}
+        - {x: -84, y: 14}
+        - {x: -84, y: -6}
+        - {x: -79, y: -7}
+        - {x: -65, y: -7}
+        - {x: -61, y: -2}
+        - {x: -61, y: 12}
+    - name: prodaja_vozvratov_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1173
+        width: 1085
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 267.5, y: 136.5}
+        - {x: 267.5, y: 99.5}
+        - {x: -542.5, y: 99.5}
+        - {x: -542.5, y: -99.5}
+        - {x: 267.5, y: -99.5}
+        - {x: 267.5, y: -136.5}
+        - {x: 542.5, y: -136.5}
+        - {x: 542.5, y: 136.5}
+    - name: prodaja_vozvratov_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 790
+        width: 1085
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 267.5, y: 137}
+        - {x: 267.5, y: 99}
+        - {x: -542.5, y: 99}
+        - {x: -542.5, y: -100}
+        - {x: 267.5, y: -100}
+        - {x: 267.5, y: -137}
+        - {x: 542.5, y: -137}
+        - {x: 542.5, y: 137}
+    - name: prodaja_vozvratov_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 383
+        width: 1085
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 267.5, y: 136.5}
+        - {x: 267.5, y: 99.5}
+        - {x: -542.5, y: 99.5}
+        - {x: -542.5, y: -99.5}
+        - {x: 267.5, y: -99.5}
+        - {x: 267.5, y: -136.5}
+        - {x: 542.5, y: -136.5}
+        - {x: 542.5, y: 136.5}
+    - name: prodaja_vozvratov_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1085
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 267.5, y: 137}
+        - {x: 267.5, y: 99}
+        - {x: -542.5, y: 99}
+        - {x: -542.5, y: -100}
+        - {x: 267.5, y: -100}
+        - {x: 267.5, y: -137}
+        - {x: 542.5, y: -137}
+        - {x: 542.5, y: 137}
     outline: []
   spritePackingTag: 
   userData: 

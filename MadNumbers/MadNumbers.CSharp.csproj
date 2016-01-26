@@ -68,9 +68,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AddKristalls.cs" />
     <Compile Include="Assets\CellGenerate.cs" />
     <Compile Include="Assets\CompAnim.cs" />
     <Compile Include="Assets\FinishScreen.cs" />
+    <Compile Include="Assets\GFW12x12.cs" />
+    <Compile Include="Assets\GFW6x6.cs" />
+    <Compile Include="Assets\GFW8x8.cs" />
     <Compile Include="Assets\Game_PlayerVsPc.cs" />
     <Compile Include="Assets\Generate_pole.cs" />
     <Compile Include="Assets\GoMainMenu.cs" />
@@ -78,6 +82,11 @@
     <Compile Include="Assets\cell_Pl_vs_Pc.cs" />
     <Compile Include="Assets\frames.cs" />
     <Compile Include="Assets\frames2.cs" />
+    <Compile Include="Assets\goGFW.cs" />
+    <Compile Include="Assets\kristalMM.cs" />
+    <Compile Include="Assets\level12X12ButtonGFW.cs" />
+    <Compile Include="Assets\level6X6ButtonGFW.cs" />
+    <Compile Include="Assets\level8X8ButtonGFW.cs" />
     <Compile Include="Assets\level_12X12_button.cs" />
     <Compile Include="Assets\level_6X6_button.cs" />
     <Compile Include="Assets\level_8X8_button.cs" />
