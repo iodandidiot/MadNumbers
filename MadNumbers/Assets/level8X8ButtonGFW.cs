@@ -8,7 +8,14 @@ public class level8X8ButtonGFW : MonoBehaviour {
     {
         PlayerPrefs.SetString("Level", "game8X8");
         PlayerPrefs.SetString("Level_target", "GFW");
-        SceneManager.LoadScene("game8X8");
+        if (PlayerPrefs.GetInt("Help") == 0)
+        {
+            SceneManager.LoadScene("help");
+        }
+        else
+        {
+            SceneManager.LoadScene("game8X8");
+        }
 
     }
 }

@@ -308,13 +308,13 @@ public class Game_PlayerVsPc : MonoBehaviour {
                         if (dept < maxDepth)                                                   
                         {
                             choice = AiChoice(1, i, dept);
-                            if ((memScore1 - memScore2 < bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 < memScore2)) || bestScore1 == -9999))
+                            if ((memScore1 - memScore2 < bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + CompPoints < memScore2 + PlayerPoints)) || bestScore1 == -9999))
                             {
                                 bestScore1 = memScore1;
                                 bestScore2 = memScore2;
                                 bestChoice = i;
                                 if (choice == -1)
-                                    bestScore2 += 99 * 5;
+                                    bestScore2 += poleRazmer * 5;
                             }
 
                         }
@@ -348,13 +348,13 @@ public class Game_PlayerVsPc : MonoBehaviour {
                     if (dept < maxDepth)
                     {
                         choice = AiChoice(0, i, dept);
-                        if ((memScore1 - memScore2 > bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 > memScore2)) || bestScore1 == -9999))
+                        if ((memScore1 - memScore2 > bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + CompPoints > memScore2 + PlayerPoints)) || bestScore1 == -9999))
                         {
                             bestScore1 = memScore1;
                             bestScore2 = memScore2;
                             bestChoice = i;
                             if (choice == -1)
-                                bestScore1 += 99 * 5;
+                                bestScore1 += poleRazmer * 5;
                         }
 
                     }
@@ -376,6 +376,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
             memScore1 = bestScore1;
             memScore2 = bestScore2;
         }
+
         return bestChoice;
     }
     IEnumerator CompStep(int x)
@@ -383,8 +384,8 @@ public class Game_PlayerVsPc : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         print(AIchoice(_turn, x, 1));
         //GameObject compChoice = cells[AIchoice(_turn, x, 1), x];
-        memScore1 = CompPoints;
-        memScore2 = PlayerPoints;
+        memScore2 = CompPoints;
+        memScore1 = PlayerPoints;
         GameObject compChoice = cells[AiChoice(_turn, x, 0), x];
         //for(int i=0;i<10;i++)
         //{

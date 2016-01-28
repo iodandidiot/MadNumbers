@@ -8,7 +8,14 @@ public class level_8X8_button : MonoBehaviour {
     {
         PlayerPrefs.SetString("Level", "game8X8");
         PlayerPrefs.SetString("Level_target", "kristalls");
-        SceneManager.LoadScene("game8X8");
+        if (PlayerPrefs.GetInt("Help") == 0)
+        {
+            SceneManager.LoadScene("help");
+        }
+        else
+        {
+            SceneManager.LoadScene("game8X8");
+        }
 
     }
 }

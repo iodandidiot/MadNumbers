@@ -82,7 +82,10 @@
     <Compile Include="Assets\cell_Pl_vs_Pc.cs" />
     <Compile Include="Assets\frames.cs" />
     <Compile Include="Assets\frames2.cs" />
+    <Compile Include="Assets\goAfterHelp.cs" />
     <Compile Include="Assets\goGFW.cs" />
+    <Compile Include="Assets\goToHelp.cs" />
+    <Compile Include="Assets\help_script.cs" />
     <Compile Include="Assets\kristalMM.cs" />
     <Compile Include="Assets\level12X12ButtonGFW.cs" />
     <Compile Include="Assets\level6X6ButtonGFW.cs" />
@@ -90,7 +93,11 @@
     <Compile Include="Assets\level_12X12_button.cs" />
     <Compile Include="Assets\level_6X6_button.cs" />
     <Compile Include="Assets\level_8X8_button.cs" />
+    <Compile Include="Assets\pause.cs" />
     <Compile Include="Assets\scaleAnimWater.cs" />
+    <Compile Include="Assets\touchHelp.cs" />
+    <Compile Include="Assets\touchHelp1.cs" />
+    <Compile Include="Assets\touchHelp3.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
