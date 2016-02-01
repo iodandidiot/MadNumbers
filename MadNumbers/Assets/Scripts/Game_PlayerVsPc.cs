@@ -340,8 +340,8 @@ public class Game_PlayerVsPc : MonoBehaviour {
                         if (dept < maxDepth)                                                   
                         {
                             choice = AiChoice(1, i, dept);
-                            if ((memScore1 - memScore2 < bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + CompPoints < memScore2 + PlayerPoints)) || bestScore1 == -9999))
-                            //if ((memScore1 - memScore2 < bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + PlayerPoints < memScore2 + CompPoints)) || bestScore1 == -9999))
+                            //if ((memScore1 - memScore2 < bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + CompPoints < memScore2 + PlayerPoints)) || bestScore1 == -9999))
+                            if ((memScore1 - memScore2 < bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + PlayerPoints < memScore2 + CompPoints)) || bestScore1 == -9999))
                             {
                                 bestScore1 = memScore1;
                                 bestScore2 = memScore2;
@@ -381,8 +381,8 @@ public class Game_PlayerVsPc : MonoBehaviour {
                     if (dept < maxDepth)
                     {
                         choice = AiChoice(0, i, dept);
-                        if ((memScore1 - memScore2 > bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + CompPoints > memScore2 + PlayerPoints)) || bestScore1 == -9999))
-                        //if ((memScore1 - memScore2 > bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + PlayerPoints > memScore2 + CompPoints)) || bestScore1 == -9999))
+                        //if ((memScore1 - memScore2 > bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + CompPoints > memScore2 + PlayerPoints)) || bestScore1 == -9999))
+                        if ((memScore1 - memScore2 > bestScore1 - bestScore2 && (choice != -1 || (choice == -1 && memScore1 + PlayerPoints > memScore2 + CompPoints)) || bestScore1 == -9999))
                         {
                             bestScore1 = memScore1;
                             bestScore2 = memScore2;
@@ -415,7 +415,7 @@ public class Game_PlayerVsPc : MonoBehaviour {
     }
     IEnumerator CompStep(int x)
     {
-        _compAnim.myStep();
+        //_compAnim.myStep();
         yield return new WaitForSeconds(0.5f);
         print(AIchoice(_turn, x, 1));
         //GameObject compChoice = cells[AIchoice(_turn, x, 1), x];

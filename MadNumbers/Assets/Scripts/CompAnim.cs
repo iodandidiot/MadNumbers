@@ -145,7 +145,8 @@ public class CompAnim : MonoBehaviour {
     {
         if (!sayBool)
         {
-            _audio.clip = robot[7];
+            if (Random.Range(0, 2) == 1) _audio.clip = robot[7];
+            else _audio.clip = robot[2];
             _audio.Play();
             StartCoroutine("Say");
         }

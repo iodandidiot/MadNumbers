@@ -68,6 +68,10 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
             {
                 compAnim.youLoose();
             }
+            if (cellNumber > 8 && color == 1 && gPole.Turn == 1)
+            {
+                compAnim.machinMaslo();
+            }
             if (color == 0)
             {
                 SpriteRenderer chouseColor = gameObject.GetComponent<SpriteRenderer>();
