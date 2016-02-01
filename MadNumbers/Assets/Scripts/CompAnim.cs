@@ -17,6 +17,7 @@ public class CompAnim : MonoBehaviour {
     Animator redFlagAnim;
     public AudioClip [] robot;
     AudioSource _audio;
+    bool sayBool;
 	// Use this for initialization
 	void Start () 
     {
@@ -45,7 +46,10 @@ public class CompAnim : MonoBehaviour {
             redFlag.gameObject.SetActive(false);
             StopCoroutine("setRedFlagCor");
         }
-
+        if (PlayerPoints - CompPoints > 20 && !whitef)
+        {
+                iLost();
+        }
 	}
 
     IEnumerator animEye()
@@ -109,32 +113,60 @@ public class CompAnim : MonoBehaviour {
     }
     public void myStep()
     {
-        _audio.clip = robot[0];
-        _audio.Play();
-        StartCoroutine("Say");
+        if (!sayBool)
+        {
+            _audio.clip = robot[0];
+            _audio.Play();
+            StartCoroutine("Say");
+        }
+        
     }
     public void machinMaslo()
     {
-        _audio.clip = robot[1];
-        _audio.Play();
-        StartCoroutine("Say");
+        if (!sayBool)
+        {
+            _audio.clip = robot[1];
+            _audio.Play();
+            StartCoroutine("Say");
+        }
+        
     }
     public void youSmart()
     {
-        _audio.clip = robot[3];
-        _audio.Play();
-        StartCoroutine("Say");
+        if (!sayBool)
+        {
+            _audio.clip = robot[3];
+            _audio.Play();
+            StartCoroutine("Say");
+        }
+        
     }
     public void youLoose()
     {
-        _audio.clip = robot[3];
-        _audio.Play();
-        StartCoroutine("Say");
+        if (!sayBool)
+        {
+            _audio.clip = robot[7];
+            _audio.Play();
+            StartCoroutine("Say");
+        }
+        
+    }
+    public void iLost()
+    {
+        if (!sayBool)
+        {
+            _audio.clip = robot[6];
+            _audio.Play();
+            StartCoroutine("Say");
+        }
+
     }
     IEnumerator Say()
     {
+        sayBool = true;
         say.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         say.gameObject.SetActive(false);
+        sayBool = false;
     }
 }
