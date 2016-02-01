@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ba547537c3d6f4943aea044dac1afb9d
-timeCreated: 1453837819
+timeCreated: 1454276542
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -60,54 +60,40 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 281
-        y: 1673
+        y: 1554
         width: 290
-        height: 146
+        height: 265
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 75, y: 73}
-        - {x: -65, y: 73}
-        - {x: -66, y: 72}
-        - {x: -72, y: 67}
-        - {x: -76, y: 59}
-        - {x: -75, y: 28}
-        - {x: -66, y: 17}
-        - {x: -110, y: 5}
-        - {x: -145, y: -39}
-        - {x: -145, y: -72}
-        - {x: -142, y: -73}
-        - {x: 138, y: -73}
-        - {x: 145, y: -68}
-        - {x: 145, y: -40}
-    - name: prodaja_vozvratov_1
-      rect:
-        serializedVersion: 2
-        x: 317
-        y: 1565
-        width: 218
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -109, y: 50}
-        - {x: -109, y: -50}
-        - {x: 109, y: -50}
-        - {x: 109, y: 50}
-      - - {x: -15, y: 28}
-        - {x: 87, y: 28}
-        - {x: 87, y: -28}
-        - {x: -15, y: -28}
-      - - {x: -65, y: 16}
-        - {x: -77, y: 16}
-        - {x: -84, y: 14}
-        - {x: -84, y: -6}
-        - {x: -79, y: -7}
-        - {x: -65, y: -7}
-        - {x: -61, y: -2}
-        - {x: -61, y: 12}
+      - - {x: -111, y: -19.5}
+        - {x: -111, y: -123.5}
+        - {x: 111, y: -123.5}
+        - {x: 111, y: -19.5}
+      - - {x: -65, y: -55.5}
+        - {x: -83, y: -55.5}
+        - {x: -84, y: -56.5}
+        - {x: -84, y: -78.5}
+        - {x: -65, y: -78.5}
+        - {x: -61, y: -73.5}
+        - {x: -61, y: -57.5}
+      - - {x: 145, y: -9.5}
+        - {x: 145, y: 25.5}
+        - {x: 111, y: 63.5}
+        - {x: 39, y: 62.5}
+        - {x: 66, y: 76.5}
+        - {x: 78, y: 89.5}
+        - {x: 74, y: 127.5}
+        - {x: 69, y: 132.5}
+        - {x: -69, y: 132.5}
+        - {x: -83, y: 120.5}
+        - {x: -70, y: 70.5}
+        - {x: -110, y: 64.5}
+        - {x: -145, y: 19.5}
+        - {x: -145, y: -10.5}
+        - {x: -137, y: -15.5}
+        - {x: 143, y: -15.5}
     - name: prodaja_vozvratov_2
       rect:
         serializedVersion: 2
@@ -116,7 +102,7 @@ TextureImporter:
         width: 1085
         height: 273
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 267.5, y: 136.5}
@@ -135,7 +121,7 @@ TextureImporter:
         width: 1085
         height: 274
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 267.5, y: 137}
@@ -154,7 +140,7 @@ TextureImporter:
         width: 1085
         height: 273
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 267.5, y: 136.5}
@@ -173,7 +159,7 @@ TextureImporter:
         width: 1085
         height: 274
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 267.5, y: 137}
