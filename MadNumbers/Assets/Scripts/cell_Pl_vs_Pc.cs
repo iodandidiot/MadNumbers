@@ -60,17 +60,21 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
         Game_PlayerVsPc gPole = pole.GetComponent<Game_PlayerVsPc>();
         if (almaz ==null )
         {
-            if (cellNumber > 8 && color == 0 && gPole.Turn==0)
+            if (cellNumber > 6 && color == 0 && gPole.Turn==0)
             {
                 compAnim.youSmart();
             }
-            if (cellNumber > 8 && color == 1 && gPole.Turn == 0)
+            if (cellNumber > 6 && color == 1 && gPole.Turn == 0)
             {
                 compAnim.youLoose();
             }
-            if (cellNumber > 8 && color == 1 && gPole.Turn == 1)
+            if (cellNumber > 6 && color == 1 && gPole.Turn == 1)
             {
                 compAnim.machinMaslo();
+            }
+            if (gPole.Turn == 1)
+            {
+                compAnim.myStep();
             }
             if (color == 0)
             {
