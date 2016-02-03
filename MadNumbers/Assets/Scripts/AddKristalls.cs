@@ -36,12 +36,13 @@ public class AddKristalls : MonoBehaviour {
         for (int i = 0; i < 5; i++)
         {
             _image.gameObject.transform.localScale = new Vector2(_image.gameObject.transform.localScale.x + 0.02f, _image.gameObject.transform.localScale.y + 0.02f);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.05f);
         }
+        yield return new WaitForSeconds(1f);
         for (int i = 0; i < 5; i++)
         {
             _image.gameObject.transform.localScale = new Vector2(_image.gameObject.transform.localScale.x - 0.02f, _image.gameObject.transform.localScale.y - 0.02f);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.025f);
         }
         PlayerPrefs.SetInt("Kristalls", PlayerPrefs.GetInt("Kristalls") + kol);
         _text.text = string.Format("x {0}", PlayerPrefs.GetInt("Kristalls"));

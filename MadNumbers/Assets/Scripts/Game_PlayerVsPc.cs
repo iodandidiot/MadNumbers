@@ -26,7 +26,11 @@ public class Game_PlayerVsPc : MonoBehaviour {
     public int memScore2;
     public Text backText;
     public Sprite[] fons;
+    public Sprite[] yxi;
+    public SpriteRenderer yxo1;
+    public SpriteRenderer yxo2;
     public CompAnim _compAnim;
+    public GameObject buyBack;
     // Use this for initialization
     void Start()
     {        
@@ -40,25 +44,35 @@ public class Game_PlayerVsPc : MonoBehaviour {
             case 0:
                 SpriteRenderer fonBg = gameObject.GetComponent<SpriteRenderer>();
                 fonBg.sprite = fons[0];
+                yxo1.sprite = yxi[0];
+                yxo2.sprite = yxi[0];
                 PlayerPrefs.SetInt("Fons", 1);
                 break;
             case 1:
                 SpriteRenderer fonBg1 = gameObject.GetComponent<SpriteRenderer>();
                 fonBg1.sprite = fons[1];
+                yxo1.sprite = yxi[1];
+                yxo2.sprite = yxi[1];
                 PlayerPrefs.SetInt("Fons", 2);
                 break;
             case 2:
                 SpriteRenderer fonBg3 = gameObject.GetComponent<SpriteRenderer>();
                 fonBg3.sprite = fons[2];
+                yxo1.sprite = yxi[2];
+                yxo2.sprite = yxi[2];
                 PlayerPrefs.SetInt("Fons", 3);
                 break;
             case 3:
                 SpriteRenderer fonBg4 = gameObject.GetComponent<SpriteRenderer>();
                 fonBg4.sprite = fons[3];
+                yxo1.sprite = yxi[3];
+                yxo2.sprite = yxi[3];
                 PlayerPrefs.SetInt("Fons", 0);
                 break;
             default:
                 SpriteRenderer fonBg5 = gameObject.GetComponent<SpriteRenderer>();
+                yxo1.sprite = yxi[0];
+                yxo2.sprite = yxi[0];
                 fonBg5.sprite = fons[0];
                 PlayerPrefs.SetInt("Fons", 1);
                 break;
@@ -526,10 +540,11 @@ public class Game_PlayerVsPc : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("BackCount") > 0)
         {
-            PlayerPrefs.SetInt("BackCount", PlayerPrefs.GetInt("BackCount") - 1);
-            backText.text = string.Format("{0}", PlayerPrefs.GetInt("BackCount"));
+            
             if (_turn == 0 && turns > 0)
             {
+                PlayerPrefs.SetInt("BackCount", PlayerPrefs.GetInt("BackCount") - 1);
+                backText.text = string.Format("{0}", PlayerPrefs.GetInt("BackCount"));
                 turns = 0;
                 print(cells.Length);
                 print(string.Format("{0} , {1}", PlayerPrefs.GetInt("PlayerStepY"), PlayerPrefs.GetInt("PlayerStepX")));
@@ -576,8 +591,11 @@ public class Game_PlayerVsPc : MonoBehaviour {
                 print(cells.Length);
             }
         }
-        
-        
+        else
+        {
+            buyBack.SetActive(true);
+        }
+               
     }
     IEnumerator getBackCoro(int x,int y)
     {

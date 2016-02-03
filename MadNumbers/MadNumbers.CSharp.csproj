@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Quit.cs" />
     <Compile Include="Assets\Scripts\AddKristalls.cs" />
     <Compile Include="Assets\Scripts\CellGenerate.cs" />
     <Compile Include="Assets\Scripts\CompAnim.cs" />
@@ -101,6 +102,11 @@
     <Compile Include="Assets\Scripts\touchHelp.cs" />
     <Compile Include="Assets\Scripts\touchHelp1.cs" />
     <Compile Include="Assets\Scripts\touchHelp3.cs" />
+    <Compile Include="Assets\buy11.cs" />
+    <Compile Include="Assets\buy16.cs" />
+    <Compile Include="Assets\buy24.cs" />
+    <Compile Include="Assets\buy5.cs" />
+    <Compile Include="Assets\buybackClose.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

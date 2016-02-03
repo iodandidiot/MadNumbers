@@ -7,9 +7,13 @@ public class help_script : MonoBehaviour {
 
     public GameObject help1;
     public GameObject help2;
+    public GameObject help2_2;
     public GameObject help3;
+    public GameObject help3_2;
     public GameObject help4;
+    public GameObject help4_2;
     public GameObject help5;
+    public GameObject help5_2;
     public GameObject touch11;
     public GameObject touch4;
     public GameObject set1;
@@ -23,13 +27,19 @@ public class help_script : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        help1.SetActive(true);
+        help1.SetActive(false);
         set1.SetActive(true);
         set2.SetActive(false);
         help2.SetActive(false);
+        help2_2.SetActive(false);
+        if (Application.systemLanguage == SystemLanguage.Russian) help2.SetActive(true);
+        else help2_2.SetActive(true);
         help3.SetActive(false);
+        help3_2.SetActive(false);
         help4.SetActive(false);
+        help4_2.SetActive(false);
         help5.SetActive(false);
+        help5_2.SetActive(false);
         score.gameObject.SetActive(false);
         touch5.SetActive(false);
         touch6.SetActive(false);
@@ -44,8 +54,8 @@ public class help_script : MonoBehaviour {
     IEnumerator help_1()
     {
         yield return new WaitForSeconds(2f);
-        help2.SetActive(true);
-        help1.SetActive(false);
+        //help2.SetActive(true);
+        //help1.SetActive(false);
         for (int i = 0; i < 10; )
         {
             for (int j = 0; j < 5; j++)
@@ -64,7 +74,9 @@ public class help_script : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.5f);
         help2.SetActive(false);
-        help3.SetActive(true);
+        help2_2.SetActive(false);
+        if (Application.systemLanguage == SystemLanguage.Russian) help3.SetActive(true);
+        else help3_2.SetActive(true);
         set1.SetActive(false);
         set2.SetActive(true);
         for (int i = 0; i < 2;i++)
@@ -94,7 +106,9 @@ public class help_script : MonoBehaviour {
     public void StartHelp3()
     {
         help3.SetActive(false);
-        help4.SetActive(true);
+        help3_2.SetActive(false);
+        if (Application.systemLanguage == SystemLanguage.Russian) help4.SetActive(true);
+        else help4_2.SetActive(true);
         set2.SetActive(false);
         score.gameObject.SetActive(true);
         touch5.SetActive(true);
@@ -155,7 +169,9 @@ public class help_script : MonoBehaviour {
         yield return new WaitForSeconds(2f);
         score.gameObject.SetActive(false);
         help4.SetActive(false);
-        help5.SetActive(true);
+        help4_2.SetActive(false);
+        if (Application.systemLanguage == SystemLanguage.Russian) help5.SetActive(true);
+        else help5_2.SetActive(true);
         score.gameObject.SetActive(false);
         yield return new WaitForSeconds(5f);
         if (PlayerPrefs.GetInt("Help") == 0)

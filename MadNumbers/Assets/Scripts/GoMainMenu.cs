@@ -10,4 +10,11 @@ public class GoMainMenu : MonoBehaviour {
     {
         SceneManager.LoadScene("main_menu");
     }
+    void Update()
+    {
+        if ((Input.GetKeyDown(KeyCode.Escape)))
+        {
+            SceneManager.LoadScene("main_menu");
+        }
+    }
 }

@@ -22,6 +22,9 @@ public class CompAnim : MonoBehaviour {
 	void Start () 
     {
         _audio = gameObject.GetComponent<AudioSource>();
+        if (Application.systemLanguage == SystemLanguage.Russian) _audio.clip = robot[5];
+        else _audio.clip = robot[14];
+        _audio.Play();
         StartCoroutine("animEye");
         whiteFlag.gameObject.SetActive(false);
         redFlag.gameObject.SetActive(false);
@@ -115,7 +118,8 @@ public class CompAnim : MonoBehaviour {
     {
         if (!sayBool)
         {
-            _audio.clip = robot[0];
+            if (Application.systemLanguage == SystemLanguage.Russian) _audio.clip = robot[0];
+            else _audio.clip = robot[9];
             _audio.Play();
             StartCoroutine("Say");
         }
@@ -125,7 +129,8 @@ public class CompAnim : MonoBehaviour {
     {
         if (!sayBool)
         {
-            _audio.clip = robot[1];
+            if (Application.systemLanguage == SystemLanguage.Russian) _audio.clip = robot[1];
+            else _audio.clip = robot[10];
             _audio.Play();
             StartCoroutine("Say");
         }
@@ -135,8 +140,16 @@ public class CompAnim : MonoBehaviour {
     {
         if (!sayBool)
         {
-            if (Random.Range(0, 2) == 1) _audio.clip = robot[3];
-            else _audio.clip = robot[8];
+            if (Application.systemLanguage == SystemLanguage.Russian)
+            {
+                if (Random.Range(0, 2) == 1) _audio.clip = robot[3];
+                else _audio.clip = robot[8];
+            }
+            else
+            {
+                if (Random.Range(0, 2) == 1) _audio.clip = robot[12];
+                else _audio.clip = robot[17];
+            }
             _audio.Play();
             StartCoroutine("Say");
         }
@@ -146,8 +159,16 @@ public class CompAnim : MonoBehaviour {
     {
         if (!sayBool)
         {
-            if (Random.Range(0, 2) == 1) _audio.clip = robot[7];
-            else _audio.clip = robot[2];
+            if (Application.systemLanguage == SystemLanguage.Russian)
+            {
+                if (Random.Range(0, 2) == 1) _audio.clip = robot[7];
+                else _audio.clip = robot[2];
+            }
+            else
+            {
+                if (Random.Range(0, 2) == 1) _audio.clip = robot[16];
+                else _audio.clip = robot[11];
+            }
             _audio.Play();
             StartCoroutine("Say");
         }
@@ -157,7 +178,8 @@ public class CompAnim : MonoBehaviour {
     {
         if (!sayBool)
         {
-            _audio.clip = robot[6];
+            if (Application.systemLanguage == SystemLanguage.Russian) _audio.clip = robot[6];
+            else _audio.clip = robot[15];
             _audio.Play();
             StartCoroutine("Say");
         }
