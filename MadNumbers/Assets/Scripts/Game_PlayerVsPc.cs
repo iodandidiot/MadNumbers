@@ -58,15 +58,15 @@ public class Game_PlayerVsPc : MonoBehaviour {
             case 2:
                 SpriteRenderer fonBg3 = gameObject.GetComponent<SpriteRenderer>();
                 fonBg3.sprite = fons[2];
-                yxo1.sprite = yxi[2];
-                yxo2.sprite = yxi[2];
+                yxo1.sprite = yxi[3];
+                yxo2.sprite = yxi[3];
                 PlayerPrefs.SetInt("Fons", 3);
                 break;
             case 3:
                 SpriteRenderer fonBg4 = gameObject.GetComponent<SpriteRenderer>();
                 fonBg4.sprite = fons[3];
-                yxo1.sprite = yxi[3];
-                yxo2.sprite = yxi[3];
+                yxo1.sprite = yxi[2];
+                yxo2.sprite = yxi[2];
                 PlayerPrefs.SetInt("Fons", 0);
                 break;
             default:

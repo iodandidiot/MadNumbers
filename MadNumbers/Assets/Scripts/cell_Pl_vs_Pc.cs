@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class cell_Pl_vs_Pc : MonoBehaviour {
 
     public Sprite[] numbers;
     public Sprite[] colors;
     public Sprite[] colorsDown;
+    public Sprite[] podlozkaSprite;
+    public string[] comments;
     public GameObject Numbers;
     public int x;
     public int y;
@@ -21,10 +24,18 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
     public GameObject empty;
     SpriteRenderer emptySprite;
     GameObject almaz;
+    GameObject podlozka;
+    GameObject textPodlozka;
     //public CompAnim _compAnim;
     // Use this for initialization
     void Start()
     {
+        podlozka = GameObject.FindWithTag("podlozka");
+        podlozka.SetActive(true);        
+        textPodlozka = GameObject.FindWithTag("textPodlozka");
+        textPodlozka.SetActive(true);
+        Text _textPodlozka = textPodlozka.GetComponent<Text>();
+        _textPodlozka.text = "Hello";
         almaz = GameObject.Find("almazik_0");
         compAnim = GameObject.Find("compAnim").GetComponent<CompAnim>();
         pole = GameObject.FindWithTag("Pole");
@@ -58,17 +69,38 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
     public void OnMouseDown()
     {
         Game_PlayerVsPc gPole = pole.GetComponent<Game_PlayerVsPc>();
-        if (almaz ==null )
+        
+
+
+        if (gPole.Turn == 0 && almaz == null)
         {
-            if (cellNumber > 6 && color == 0 && gPole.Turn==0)
+            podlozka.SetActive(true);
+            textPodlozka.SetActive(true);
+            Text _textPodlozka = textPodlozka.GetComponent<Text>();
+            Image _podlozka = podlozka.GetComponent<Image>();
+            if (this.Number > 0)
+            {
+                _podlozka.sprite = podlozkaSprite[Random.Range(0, 2)];
+                _textPodlozka.text = string.Format("+{0}\n{1}", this.Number, comments[Random.Range(0, 2)]);
+            }
+            else
+            {
+                _podlozka.sprite = podlozkaSprite[Random.Range(2, 4)];
+                _textPodlozka.text = string.Format("{0}\n{1}", this.Number, comments[Random.Range(2, 4)]);
+            }
+        }
+                
+        if (almaz == null )
+        {
+            if (cellNumber > 4 && color == 0 && gPole.Turn==0)
             {
                 compAnim.youSmart();
             }
-            if (cellNumber > 6 && color == 1 && gPole.Turn == 0)
+            if (cellNumber > 4 && color == 1 && gPole.Turn == 0)
             {
                 compAnim.youLoose();
             }
-            if (cellNumber > 6 && color == 1 && gPole.Turn == 1)
+            if (cellNumber > 4 && color == 1 && gPole.Turn == 1)
             {
                 compAnim.machinMaslo();
             }
@@ -201,6 +233,8 @@ public class cell_Pl_vs_Pc : MonoBehaviour {
         //emptySprite = CrEmpty.AddComponent<SpriteRenderer>();
         ////emptySprite.sortingLayerName = "cell";
         ////emptySprite.sortingOrder = 0;
+        podlozka.SetActive(false);
+        textPodlozka.SetActive(false);
         Destroy(NumbersThis);
         Destroy(gameObject);
     }
